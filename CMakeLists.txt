@@ -1,26 +1,21 @@
-cmake_minimum_required(VERSION 3.19 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.19)
 
 project(ThirdParty)
 
+set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/modules)
+set(CMAKE_DEBUG_POSTFIX "_d")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
+
 set(third_party_folder "ThirdParty")
 
-set(BUILD_SHARED_LIBS OFF CACHE BOOL "" FORCE)
-
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_CURRENT_DIR}/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_DIR}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_DIR}/bin)
-
-if(NOT TARGET imgui)
-    include(imgui.cmake)
-    set_target_properties(imgui PROPERTIES FOLDER ${third_party_folder}/imgui)
-endif()
-
-if(NOT TARGET glm)
-    option(BUILD_STATIC_LIBS "" ON)
-    option(BUILD_TESTING "" OFF)
-    option(GLM_TEST_ENABLE "" OFF)
-    add_subdirectory(glm)
-    set_target_properties(glm_static PROPERTIES FOLDER ${third_party_folder}/glm)
+if(NOT TARGET glad)
+    set(GLAD_SOURCES_DIR ${CMAKE_SOURCE_DIR}/glad)
+    add_subdirectory(${GLAD_SOURCES_DIR}/cmake glad_cmake)
+    glad_add_library(glad REPRODUCIBLE API gl:core=4.6)
+    set_target_properties(glad PROPERTIES FOLDER ${third_party_folder}/glad)
 endif()
 
 if(NOT TARGET glfw)
@@ -33,7 +28,20 @@ if(NOT TARGET glfw)
     set_target_properties(update_mappings PROPERTIES FOLDER ${third_party_folder}/glfw)
 endif()
 
+if(NOT TARGET glm)
+    option(BUILD_STATIC_LIBS "" ON)
+    option(BUILD_TESTING "" OFF)
+    option(GLM_TEST_ENABLE "" OFF)
+    add_subdirectory(glm)
+    set_target_properties(glm_static PROPERTIES FOLDER ${third_party_folder}/glm)
+endif()
+
+if(NOT TARGET imgui)
+    include(imgui)
+    set_target_properties(imgui PROPERTIES FOLDER ${third_party_folder}/imgui)
+endif()
+
 if(NOT TARGET stb)
-    include(stb.cmake)
+    include(stb)
     set_target_properties(stb PROPERTIES FOLDER ${third_party_folder}/stb)
 endif()
