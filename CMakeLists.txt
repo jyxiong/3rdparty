@@ -45,3 +45,8 @@ if(NOT TARGET stb)
     include(stb)
     set_target_properties(stb PROPERTIES FOLDER ${third_party_folder}/stb)
 endif()
+
+option(BUILD_TEST "Build test" ON)
+if(BUILD_TEST)
+    add_subdirectory(src)
+endif()
