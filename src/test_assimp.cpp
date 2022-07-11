@@ -7,11 +7,11 @@
 
 int main() {
 
-#ifndef TEST_PATH
+#ifndef TEST_OUTPUT_PATH
     std::cout << "Failed to add definitions of test path!" << std::endl;
     return -1;
 #endif
-    std::string testPath = TEST_PATH;
+    std::string outputPath = TEST_OUTPUT_PATH;
 
     // Create an instance of the Importer class
     Assimp::Importer importer;
@@ -19,7 +19,7 @@ int main() {
     // And have it read the given file with some example postprocessing
     // Usually - if speed is not the most important aspect for you - you'll
     // probably to request more postprocessing than we do in this example.
-    const aiScene *scene = importer.ReadFile(testPath + "/assets/spider.obj",
+    const aiScene *scene = importer.ReadFile(outputPath + "/spider.obj",
                                              aiProcess_CalcTangentSpace |
                                              aiProcess_Triangulate |
                                              aiProcess_JoinIdenticalVertices |
@@ -33,7 +33,7 @@ int main() {
     }
 
     Assimp::Exporter exporter;
-    exporter.Export(scene, "obj", testPath + "/assets/spider_out.obj");
+    exporter.Export(scene, "obj", outputPath + "/spider_out.obj");
 
     return 0;
 }

@@ -1,4 +1,4 @@
-add_definitions(-DTEST_PATH="${CMAKE_CURRENT_LIST_DIR}")
+add_definitions(-DTEST_OUTPUT_PATH="${PROJECT_SOURCE_DIR}/assets")
 
 add_executable(test_assimp test_assimp.cpp)
 target_link_libraries(test_assimp PUBLIC assimp)
