@@ -16,3 +16,12 @@
 [submodule "assimp"]
 	path = assimp
 	url = git@github.com:assimp/assimp.git
+[submodule "json"]
+	path = json
+	url = git@github.com:nlohmann/json.git
+[submodule "freetype"]
+	path = freetype
+	url = git@github.com:freetype/freetype.git
+[submodule "ImGuizmo"]
+	path = ImGuizmo
+	url = git@github.com:CedricGuillemet/ImGuizmo.git
