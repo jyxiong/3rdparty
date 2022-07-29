@@ -74,6 +74,11 @@ if (NOT TARGET nlohmann_json)
     set_target_properties(nlohmann_json PROPERTIES FOLDER ${THIRD_PARTY_DIR}/nlohmann)
 endif ()
 
+if (NOT TARGET spdlog)
+    add_subdirectory(spdlog)
+    set_target_properties(spdlog PROPERTIES FOLDER ${THIRD_PARTY_DIR}/spdlog)
+endif ()
+
 if (NOT TARGET stb)
     include(stb)
     set_target_properties(stb PROPERTIES FOLDER ${THIRD_PARTY_DIR}/stb)

@@ -25,3 +25,6 @@
 [submodule "ImGuizmo"]
 	path = ImGuizmo
 	url = git@github.com:CedricGuillemet/ImGuizmo.git
+[submodule "spdlog"]
+	path = spdlog
+	url = git@github.com:gabime/spdlog.git

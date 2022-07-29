@@ -32,6 +32,10 @@ add_executable(test_json test_json.cpp)
 target_link_libraries(test_json PUBLIC nlohmann_json)
 set_target_properties(test_json PROPERTIES FOLDER Test)
 
+add_executable(test_spdlog test_spdlog.cpp)
+target_link_libraries(test_spdlog PUBLIC spdlog)
+set_target_properties(test_spdlog PROPERTIES FOLDER Test)
+
 add_executable(test_stb test_stb.cpp)
 target_link_libraries(test_stb PUBLIC stb)
 set_target_properties(test_stb PROPERTIES FOLDER Test)
